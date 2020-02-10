@@ -28,14 +28,1787 @@
         <div class="nav-tabs-custom">
           <!-- Tabs within a box -->
           <ul class="nav nav-tabs pull-right">
-            <li class="active"><a href="#revenue-chart" data-toggle="tab">1</a></li>
-            <li><a href="#sales-chart" data-toggle="tab">2</a></li>
+            <li class="active"><a href="#first-chart" data-toggle="tab">1</a></li>
+            <li><a href="#second-chart" data-toggle="tab">2</a></li>
             <li class="pull-left header"><i class="fa fa-inbox"></i> Models</li>
         </ul>
         <div class="tab-content no-padding">
             <!-- Morris chart - Sales -->
-            <div class="chart tab-pane active" id="first-chart" style="position:relative;height:500px;"></div>
-            <div class="chart tab-pane" id="second-chart" style=" position:relative;height:500px;"></div>
+            <div class="chart tab-pane active" id="first-chart" style = "width:'50'">
+            <table class="table table-striped table-bordered table-hover model-list">
+                      <thead>
+                          <tr>
+                              
+                                  
+                                  <th class="list-checkbox-column">
+                                      <input type="checkbox" name="rowtoggle" class="action-rowtoggle" title="Select all records">
+                                  </th>
+                                  
+                                  
+                                      
+                                      <th class="col-md-1">&nbsp;</th>
+                                      
+                                  
+                                  
+                                  
+                                  <th class="column-header col-first_name">
+                                      
+                                          
+                                              <a href="/admin/user/?sort=0" title="Sort by First Name">First Name</a>
+                                          
+                                      
+                                      
+                                  </th>
+                                  
+                                  
+                                  <th class="column-header col-last_name">
+                                      
+                                          
+                                              <a href="/admin/user/?sort=1" title="Sort by Last Name">Last Name</a>
+                                          
+                                      
+                                      
+                                  </th>
+                                  
+                                  
+                                  <th class="column-header col-email">
+                                      
+                                          
+                                              <a href="/admin/user/?sort=2" title="Sort by Email">Email</a>
+                                          
+                                      
+                                      
+                                  </th>
+                                  
+                                  
+                                  <th class="column-header col-active">
+                                      
+                                          
+                                              <a href="/admin/user/?sort=3" title="Sort by Active">Active</a>
+                                          
+                                      
+                                      
+                                  </th>
+                                  
+                                  
+                                  <th class="column-header col-confirmed_at">
+                                      
+                                          
+                                              <a href="/admin/user/?sort=4" title="Sort by Confirmed At">Confirmed At</a>
+                                          
+                                      
+                                      
+                                  </th>
+                                  
+                              
+                          </tr>
+                      </thead>
+                      
+                      <tbody><tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="1" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=1&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=1&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="1">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="1" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Admin" href="#" id="first_name" name="first_name" class="editable editable-click">Admin</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="1" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Admin" href="#" id="last_name" name="last_name" class="editable editable-click">Admin</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="1" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="admin" href="#" id="email" name="email" class="editable editable-click">admin</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="3" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=3&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=3&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="3">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="3" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Amelia" href="#" id="first_name" name="first_name" class="editable editable-click">Amelia</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="3" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Smith" href="#" id="last_name" name="last_name" class="editable editable-click">Smith</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="3" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="amelia.smith@gmail.com" href="#" id="email" name="email" class="editable editable-click">amelia.smith@gmail.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="4" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=4&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=4&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="4">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="4" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Oliver" href="#" id="first_name" name="first_name" class="editable editable-click">Oliver</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="4" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Patel" href="#" id="last_name" name="last_name" class="editable editable-click">Patel</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="4" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="oliver.pat@example.com" href="#" id="email" name="email" class="editable editable-click">oliver.pat@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="5" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=5&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=5&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="5">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="5" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Jack" href="#" id="first_name" name="first_name" class="editable editable-click">Jack</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="5" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Jones" href="#" id="last_name" name="last_name" class="editable editable-click">Jones</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="5" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="jack.jones@example.com" href="#" id="email" name="email" class="editable editable-click">jack.jones@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="6" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=6&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=6&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="6">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="6" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Isabella" href="#" id="first_name" name="first_name" class="editable editable-click">Isabella</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="6" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Williams" href="#" id="last_name" name="last_name" class="editable editable-click">Williams</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="6" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="isabella.williams@example.com" href="#" id="email" name="email" class="editable editable-click">isabella.williams@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="7" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=7&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=7&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="7">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="7" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Charlie" href="#" id="first_name" name="first_name" class="editable editable-click">Charlie</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="7" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Johnson" href="#" id="last_name" name="last_name" class="editable editable-click">Johnson</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="7" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="charlie.johnson@example.com" href="#" id="email" name="email" class="editable editable-click">charlie.johnson@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="8" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=8&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=8&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="8">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="8" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Sophie" href="#" id="first_name" name="first_name" class="editable editable-click">Sophie</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="8" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Taylor" href="#" id="last_name" name="last_name" class="editable editable-click">Taylor</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="8" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="sophie.taylor@example.com" href="#" id="email" name="email" class="editable editable-click">sophie.taylor@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="9" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=9&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=9&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="9">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="9" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Mia" href="#" id="first_name" name="first_name" class="editable editable-click">Mia</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="9" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Thomas" href="#" id="last_name" name="last_name" class="editable editable-click">Thomas</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="9" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="mia.thomas@example.com" href="#" id="email" name="email" class="editable editable-click">mia.thomas@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="10" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=10&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=10&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="10">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="10" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Jacob" href="#" id="first_name" name="first_name" class="editable editable-click">Jacob</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="10" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Roberts" href="#" id="last_name" name="last_name" class="editable editable-click">Roberts</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="10" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="jacob.roberts@example.com" href="#" id="email" name="email" class="editable editable-click">jacob.roberts@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="11" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=11&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=11&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="11">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="11" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Thomas" href="#" id="first_name" name="first_name" class="editable editable-click">Thomas</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="11" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Khan" href="#" id="last_name" name="last_name" class="editable editable-click">Khan</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="11" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="thomas.khan@example.com" href="#" id="email" name="email" class="editable editable-click">thomas.khan@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="12" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=12&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=12&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="12">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="12" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Emily" href="#" id="first_name" name="first_name" class="editable editable-click">Emily</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="12" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Lewis" href="#" id="last_name" name="last_name" class="editable editable-click">Lewis</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="12" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="emily@example.com" href="#" id="email" name="email" class="editable editable-click">emily@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="13" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=13&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=13&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="13">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="13" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Lily" href="#" id="first_name" name="first_name" class="editable editable-click">Lily</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="13" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Jackson" href="#" id="last_name" name="last_name" class="editable editable-click">Jackson</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="13" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="lily.jackson@example.com" href="#" id="email" name="email" class="editable editable-click">lily.jackson@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="14" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=14&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=14&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="14">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="14" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Ava" href="#" id="first_name" name="first_name" class="editable editable-click">Ava</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="14" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Clarke" href="#" id="last_name" name="last_name" class="editable editable-click">Clarke</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="14" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="ava.clarke@example.com" href="#" id="email" name="email" class="editable editable-click">ava.clarke@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="15" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=15&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=15&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="15">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="15" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Isla" href="#" id="first_name" name="first_name" class="editable editable-click">Isla</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="15" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="James" href="#" id="last_name" name="last_name" class="editable editable-click">James</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="15" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="isla.james@example.com" href="#" id="email" name="email" class="editable editable-click">isla.james@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="16" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=16&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=16&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="16">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="16" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Alfie" href="#" id="first_name" name="first_name" class="editable editable-click">Alfie</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="16" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Phillips" href="#" id="last_name" name="last_name" class="editable editable-click">Phillips</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="16" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="alfie.phillips@example.com" href="#" id="email" name="email" class="editable editable-click">alfie.phillips@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="17" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=17&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=17&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="17">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="17" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Olivia" href="#" id="first_name" name="first_name" class="editable editable-click">Olivia</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="17" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Wilson" href="#" id="last_name" name="last_name" class="editable editable-click">Wilson</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="17" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="olivia.wilson@example.com" href="#" id="email" name="email" class="editable editable-click">olivia.wilson@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="18" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=18&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=18&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="18">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="18" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Jessica" href="#" id="first_name" name="first_name" class="editable editable-click">Jessica</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="18" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Ali" href="#" id="last_name" name="last_name" class="editable editable-click">Ali</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="18" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="jessica.ali@example.com" href="#" id="email" name="email" class="editable editable-click">jessica.ali@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="19" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=19&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=19&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="19">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="19" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Riley" href="#" id="first_name" name="first_name" class="editable editable-click">Riley</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="19" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Mason" href="#" id="last_name" name="last_name" class="editable editable-click">Mason</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="19" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="riley.mason@example.com" href="#" id="email" name="email" class="editable editable-click">riley.mason@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="20" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=20&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=20&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="20">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="20" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="William" href="#" id="first_name" name="first_name" class="editable editable-click">William</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="20" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Mitchell" href="#" id="last_name" name="last_name" class="editable editable-click">Mitchell</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="20" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="william.mitchell@example.com" href="#" id="email" name="email" class="editable editable-click">william.mitchell@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                      <tr>
+                          
+                              
+                              <td>
+                                  <input type="checkbox" name="rowid" class="action-checkbox" value="21" title="Select record">
+                              </td>
+                              
+                              
+                                  
+                                  <td class="list-buttons-column">
+                                      
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="View Record" href="/admin/user/details/?id=21&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-eye glyphicon glyphicon-eye-open"></span>
+                </a>
+
+
+                                        
+                                        
+                
+                <a class="icon" data-target="#fa_modal_window" title="Edit Record" href="/admin/user/edit/?id=21&amp;url=%2Fadmin%2Fuser%2F&amp;modal=True" data-toggle="modal">
+                  <span class="fa fa-pencil glyphicon glyphicon-pencil"></span>
+                </a>
+
+
+                                        
+                                        
+              <form class="icon" method="POST" action="/admin/user/delete/">
+                <input id="id" name="id" required="" type="hidden" value="21">
+                <input id="url" name="url" type="hidden" value="/admin/user/">
+                
+                <button onclick="return faHelpers.safeConfirm('Are you sure you want to delete this record?');" title="Delete record">
+                  <span class="fa fa-trash glyphicon glyphicon-trash"></span>
+                </button>
+              </form>
+
+                                        
+                                      
+                                  </td>
+
+                              
+                                  <td class="col-first_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="21" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="James" href="#" id="first_name" name="first_name" class="editable editable-click">James</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-last_name">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="21" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="Rose" href="#" id="last_name" name="last_name" class="editable editable-click">Rose</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-email">
+                                  
+                                      
+                                      
+                                      <a data-csrf="" data-pk="21" data-role="x-editable" data-type="text" data-url="./ajax/update/" data-value="james.rose@example.com" href="#" id="email" name="email" class="editable editable-click">james.rose@example.com</a>
+                                      
+                                  
+                                  </td>
+                              
+                                  <td class="col-active">
+                                  
+                                  <span class="fa fa-check-circle glyphicon glyphicon-ok-circle icon-ok-circle"></span>
+                                  
+                                  </td>
+                              
+                                  <td class="col-confirmed_at">
+                                  
+                                  
+                                  
+                                  </td>
+                              
+                          
+                      </tr>
+                      
+                  </tbody></table>
+
+            </div>
+
+            <div class="chart tab-pane" id="second-chart" style=" position:relative;"></div>
         </div>
       </section>
     </div>  
