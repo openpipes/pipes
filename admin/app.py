@@ -9,11 +9,18 @@ import flask_admin
 from flask_admin.contrib import sqla
 from flask_admin import helpers as admin_helpers
 from flask_admin import BaseView, expose
+from flask_admin.model.template import EndpointLinkRowAction, LinkRowAction
+from flask_ckeditor import CKEditor, CKEditorField  # 导入扩展类 CKEditor 和 字段类 CKEditorField
+from flask_admin.contrib.fileadmin import FileAdmin
+from flask_admin.contrib.sqla import ModelView
+from flask_ckeditor import CKEditorField
 
 # Create Flask application
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
+ckeditor = CKEditor(app)  # 初始化扩展
+
 
 
 # Define models
@@ -47,6 +54,28 @@ class User(db.Model, UserMixin):
     def __str__(self):
         return self.email
 
+class Pooling(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    is_checked = db.Column(db.Boolean())
+    hash_code = db.Column(db.Text())
+    title = db.Column(db.Text())
+    unit = db.Column(db.Text())
+    publish_time = db.Column(db.Date())
+    content = db.Column(db.Text())
+    provinces = db.Column(db.Text())
+    cities = db.Column(db.Text())
+    """
+    下拉表单
+    """
+    doc_type = db.Column(db.Text())
+    url = db.Column(db.Text())
+    score= db.Column(db.Text())
+    resume = db.Column(db.Text())
+    keywords = db.Column(db.Text())
+    
+
+    def __str__(self):
+        return self.title
 
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
@@ -93,11 +122,55 @@ class UserView(MyModelView):
     column_details_exclude_list = column_exclude_list
     column_filters = column_editable_list
 
+class PoolingView(ModelView):
+    form_overrides = dict(text=CKEditorField)  # 重写表单字段，将 text 字段设为 CKEditorField
+    create_template = 'edit.html'  # 指定创建记录的模板
+    edit_template = 'edit.html'  # 指定编辑记录的模板
 
-class CustomView(BaseView):
+    column_editable_list = ['id','title','unit','publish_time', 'provinces','cities','url','score','resume','keywords','content','is_checked']
+    column_searchable_list = column_editable_list
+    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','score']
+    # 'content',
+    # form_excluded_columns = column_exclude_list
+    column_details_exclude_list = column_exclude_list
+    column_filters = column_editable_list
+
+    # column_extra_row_actions = [
+    #     EndpointLinkRowAction(
+    #         'off glyphicon glyphicon-off',
+    #         'pooling.modify_view',
+    #     )
+    # ]
+    # @expose('/modify/', methods=('GET',))
+    # def modify_view(self):
+    #     return """ success """
+
+class UploadFileView(FileAdmin):
+    # @expose('/')
+    allowed_extensions = ('html','pdf','doc','docx','txt','excel')
+    editable_extensions = ('md', 'html', 'txt','png')
+    can_upload = True
+    can_delete = True
+    can_delete_dirs = True
+    can_mkdir = True
+    can_rename = True
+    can_delete_dirs = False
+
+class CrawlerView(BaseView):
     @expose('/')
     def index(self):
         return self.render('admin/custom_index.html')
+
+class KGraphView(BaseView):
+    @expose('/')
+    def index(self):
+        return self.render('admin/custom_index.html')
+
+class ModelView(BaseView):
+    @expose('/')
+    def index(self):
+        return self.render('toggle_page.html')
+
 
 # Flask views
 @app.route('/')
@@ -113,9 +186,14 @@ admin = flask_admin.Admin(
 )
 
 # Add model views
-admin.add_view(MyModelView(Role, db.session, menu_icon_type='fa', menu_icon_value='fa-server', name="Roles"))
-admin.add_view(UserView(User, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="Users"))
-admin.add_view(CustomView(name="Custom view", endpoint='custom', menu_icon_type='fa', menu_icon_value='fa-connectdevelop',))
+admin.add_view(MyModelView(Role, db.session, menu_icon_type='fa', menu_icon_value='fa-server', name="权限"))
+admin.add_view(UserView(User, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="用户"))
+path = os.path.join(os.path.dirname(__file__), 'uploads')
+admin.add_view(UploadFileView(path, endpoint = "/uploads/",base_url = '/uploads/', name='上传文件',menu_icon_type='fa', menu_icon_value='fa-upload'))
+admin.add_view(PoolingView(Pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
+admin.add_view(KGraphView(menu_icon_type='fa', menu_icon_value='fa-houzz',name = "知识图谱"))
+admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-houzz'))
+admin.add_view(ModelView(name="模型控制", menu_icon_type='fa', menu_icon_value='fa-houzz'))
 
 # define a context processor for merging flask-admin's template context into the
 # flask-security views.
