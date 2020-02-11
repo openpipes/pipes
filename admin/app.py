@@ -166,7 +166,7 @@ class KGraphView(BaseView):
     def index(self):
         return self.render('admin/custom_index.html')
 
-class ModelView(BaseView):
+class PolicyModelView(BaseView):
     @expose('/')
     def index(self):
         return self.render('toggle_page.html')
@@ -193,7 +193,7 @@ admin.add_view(UploadFileView(path, endpoint = "/uploads/",base_url = '/uploads/
 admin.add_view(PoolingView(Pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
 admin.add_view(KGraphView(menu_icon_type='fa', menu_icon_value='fa-houzz',name = "知识图谱"))
 admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-houzz'))
-admin.add_view(ModelView(name="模型控制", menu_icon_type='fa', menu_icon_value='fa-houzz'))
+admin.add_view(PolicyModelView(name="模型控制", menu_icon_type='fa', menu_icon_value='fa-houzz'))
 
 # define a context processor for merging flask-admin's template context into the
 # flask-security views.
