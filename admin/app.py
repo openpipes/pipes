@@ -77,6 +77,8 @@ class Pooling(db.Model):
     def __str__(self):
         return self.title
 
+
+
 # Setup Flask-Security
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
@@ -124,7 +126,10 @@ class UserView(MyModelView):
 
 class PoolingView(ModelView):
     form_overrides = dict(text=CKEditorField)  # 重写表单字段，将 text 字段设为 CKEditorField
-    create_template = 'edit.html'  # 指定创建记录的模板
+    # form_overrides = dict(content=CKEditorField)  # 重写表单字段，将 text 字段设为 CKEditorField
+    # create_template = 'edit.html'  
+    create_modal = False
+    can_export = False
     edit_template = 'edit.html'  # 指定编辑记录的模板
 
     column_editable_list = ['id','title','unit','publish_time', 'provinces','cities','url','score','resume','keywords','content','is_checked']
@@ -166,10 +171,10 @@ class KGraphView(BaseView):
     def index(self):
         return self.render('admin/custom_index.html')
 
-class PolicyModelView(BaseView):
-    @expose('/')
-    def index(self):
-        return self.render('toggle_page.html')
+
+class PolicyModelView(ModelView):
+    list_template = 'policyModel_list.html'
+    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','score']
 
 
 # Flask views
@@ -186,14 +191,14 @@ admin = flask_admin.Admin(
 )
 
 # Add model views
-admin.add_view(MyModelView(Role, db.session, menu_icon_type='fa', menu_icon_value='fa-server', name="权限"))
-admin.add_view(UserView(User, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="用户"))
+admin.add_view(MyModelView(Role, db.session, menu_icon_type='fa', menu_icon_value='fa-server', name="权限",category="Team"))
+admin.add_view(UserView(User, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="用户",category="Team"))
 path = os.path.join(os.path.dirname(__file__), 'uploads')
 admin.add_view(UploadFileView(path, endpoint = "/uploads/",base_url = '/uploads/', name='上传文件',menu_icon_type='fa', menu_icon_value='fa-upload'))
-admin.add_view(PoolingView(Pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
+# admin.add_view(PoolingView(Pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
 admin.add_view(KGraphView(menu_icon_type='fa', menu_icon_value='fa-houzz',name = "知识图谱"))
 admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-houzz'))
-admin.add_view(PolicyModelView(name="模型控制", menu_icon_type='fa', menu_icon_value='fa-houzz'))
+admin.add_view(PolicyModelView(Pooling, db.session,name='模型控制', menu_icon_type='fa', menu_icon_value='fa-houzz'))
 
 # define a context processor for merging flask-admin's template context into the
 # flask-security views.
