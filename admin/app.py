@@ -13,74 +13,84 @@ from flask_admin.model.template import EndpointLinkRowAction, LinkRowAction
 from flask_ckeditor import CKEditor, CKEditorField  # 导入扩展类 CKEditor 和 字段类 CKEditorField
 from flask_admin.contrib.fileadmin import FileAdmin
 from flask_admin.contrib.sqla import ModelView
-from flask_ckeditor import CKEditorField
-
 # Create Flask application
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'jdbc:postgresql://postgres:@localhost:5432/policyreader'
+# app.config['BABEL_DEFAULT_LOCALE'] = 'zh_CN'
 db = SQLAlchemy(app)
 ckeditor = CKEditor(app)  # 初始化扩展
-
+# db.init_app(app)
 
 
 # Define models
-roles_users = db.Table(
-    'roles_users',
-    db.Column('user_id', db.Integer(), db.ForeignKey('user.id')),
-    db.Column('role_id', db.Integer(), db.ForeignKey('role.id'))
+roles_people = db.Table(
+    'roles_people',
+    db.Column('people_id', db.Integer(), db.ForeignKey('people.id')),
+    db.Column('roles_id', db.Integer(), db.ForeignKey('role.id'))
 )
 
 
 class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
+    name = db.Column(db.Text(), unique=True)
+    description = db.Column(db.Text())
 
     def __str__(self):
         return self.name
 
 
-class User(db.Model, UserMixin):
+class People(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(255))
-    last_name = db.Column(db.String(255))
-    email = db.Column(db.String(255), unique=True)
-    password = db.Column(db.String(255))
+    first_name = db.Column(db.Text())
+    last_name = db.Column(db.Text())
+    email = db.Column(db.Text(), unique=True)
+    password = db.Column(db.Text())
     active = db.Column(db.Boolean())
-    confirmed_at = db.Column(db.DateTime())
-    roles = db.relationship('Role', secondary=roles_users,
-                            backref=db.backref('users', lazy='dynamic'))
+    confirmed_at = db.Column(db.DATETIME())
+    roles = db.relationship('Role', secondary=roles_people,
+                            backref=db.backref('people', lazy='dynamic'))
 
     def __str__(self):
         return self.email
 
-class Pooling(db.Model):
+class pooling(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    is_checked = db.Column(db.Boolean())
     hash_code = db.Column(db.Text())
     title = db.Column(db.Text())
     unit = db.Column(db.Text())
-    publish_time = db.Column(db.Date())
-    content = db.Column(db.Text())
+    publish_time = db.Column(db.Text())
     provinces = db.Column(db.Text())
     cities = db.Column(db.Text())
-    """
-    下拉表单
-    """
+    doc_type = db.Column(db.Text())
+    url = db.Column(db.Text())
+    score= db.Column(db.Integer())
+    resume = db.Column(db.Text())
+    keywords = db.Column(db.Text())
+    content = db.Column(db.Text())
+    is_checked = db.Column(db.Boolean())
+
+    def __str__(self):
+        return self.title
+
+class articlemetadata(db.Model):
+    hash_code = db.Column(db.Text(), primary_key=True)
+    title = db.Column(db.Text())
+    unit = db.Column(db.Text())
+    publish_time = db.Column(db.Text())
+    provinces = db.Column(db.Text())
+    cities = db.Column(db.Text())
     doc_type = db.Column(db.Text())
     url = db.Column(db.Text())
     score= db.Column(db.Text())
     resume = db.Column(db.Text())
     keywords = db.Column(db.Text())
-    
 
     def __str__(self):
         return self.title
 
-
-
 # Setup Flask-Security
-user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+user_datastore = SQLAlchemyUserDatastore(db, People, Role)
 security = Security(app, user_datastore)
 
 
@@ -91,7 +101,7 @@ class MyModelView(sqla.ModelView):
         if not current_user.is_active or not current_user.is_authenticated:
             return False
 
-        if current_user.has_role('superuser'):
+        if current_user.has_role('supermanager') or current_user.has_role('manager'):
             return True
 
         return False
@@ -115,41 +125,7 @@ class MyModelView(sqla.ModelView):
     can_export = True
     can_view_details = True
     details_modal = True
-
-class UserView(MyModelView):
-    column_editable_list = ['email', 'first_name', 'last_name']
-    column_searchable_list = column_editable_list
-    column_exclude_list = ['password']
-    # form_excluded_columns = column_exclude_list
-    column_details_exclude_list = column_exclude_list
-    column_filters = column_editable_list
-
-class PoolingView(ModelView):
-    form_overrides = dict(text=CKEditorField)  # 重写表单字段，将 text 字段设为 CKEditorField
-    # form_overrides = dict(content=CKEditorField)  # 重写表单字段，将 text 字段设为 CKEditorField
-    # create_template = 'edit.html'  
-    create_modal = False
-    can_export = False
-    edit_template = 'edit.html'  # 指定编辑记录的模板
-
-    column_editable_list = ['id','title','unit','publish_time', 'provinces','cities','url','score','resume','keywords','content','is_checked']
-    column_searchable_list = column_editable_list
-    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','score']
-    # 'content',
-    # form_excluded_columns = column_exclude_list
-    column_details_exclude_list = column_exclude_list
-    column_filters = column_editable_list
-
-    # column_extra_row_actions = [
-    #     EndpointLinkRowAction(
-    #         'off glyphicon glyphicon-off',
-    #         'pooling.modify_view',
-    #     )
-    # ]
-    # @expose('/modify/', methods=('GET',))
-    # def modify_view(self):
-    #     return """ success """
-
+    
 class UploadFileView(FileAdmin):
     # @expose('/')
     allowed_extensions = ('html','pdf','doc','docx','txt','excel')
@@ -160,6 +136,35 @@ class UploadFileView(FileAdmin):
     can_mkdir = True
     can_rename = True
     can_delete_dirs = False
+    
+class PeopleView(MyModelView):
+    column_editable_list = ['email', 'first_name', 'last_name','password','active']
+    column_searchable_list = column_editable_list
+    column_exclude_list = ['password']
+    # form_excluded_columns = column_exclude_list
+#     column_details_exclude_list = column_exclude_list
+    column_filters = column_editable_list
+
+class ArticlePoolingView(ModelView):
+#     form_overrides = dict(content=CKEditorField)  # 重写表单字段，将 content 字段设为 CKEditorField
+    create_template = 'create.html'  
+    __tablename__ = "pooling"
+    can_export = False
+    edit_template = 'edit.html'  # 指定编辑记录的模板
+    column_editable_list = ['hash_code','title','unit','publish_time', 'provinces','cities','url','score','resume','keywords','is_checked','content']    
+    column_searchable_list = column_editable_list
+    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords']
+#     form_excluded_columns = column_exclude_list
+#     column_details_exclude_list = column_exclude_list
+    column_filters = column_editable_list
+
+class ArticleView(ModelView):
+    list_template = 'policyModel_list.html'
+    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','score']
+    can_create = False
+    can_edit = False
+
+
 
 class CrawlerView(BaseView):
     @expose('/')
@@ -171,10 +176,6 @@ class KGraphView(BaseView):
     def index(self):
         return self.render('admin/custom_index.html')
 
-
-class PolicyModelView(ModelView):
-    list_template = 'policyModel_list.html'
-    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','score']
 
 
 # Flask views
@@ -192,13 +193,13 @@ admin = flask_admin.Admin(
 
 # Add model views
 admin.add_view(MyModelView(Role, db.session, menu_icon_type='fa', menu_icon_value='fa-server', name="权限",category="Team"))
-admin.add_view(UserView(User, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="用户",category="Team"))
+admin.add_view(PeopleView(People, db.session, menu_icon_type='fa', menu_icon_value='fa-users', name="用户",category="Team"))
 path = os.path.join(os.path.dirname(__file__), 'uploads')
 admin.add_view(UploadFileView(path, endpoint = "/uploads/",base_url = '/uploads/', name='上传文件',menu_icon_type='fa', menu_icon_value='fa-upload'))
-# admin.add_view(PoolingView(Pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
+admin.add_view(ArticlePoolingView(pooling, db.session, menu_icon_type='fa', menu_icon_value='fa-wrench',name = '修改文稿'))
+admin.add_view(ArticleView(articlemetadata, db.session,name='已有文稿', menu_icon_type='fa', menu_icon_value='fa-file'))
 admin.add_view(KGraphView(menu_icon_type='fa', menu_icon_value='fa-houzz',name = "知识图谱"))
-admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-houzz'))
-admin.add_view(PolicyModelView(Pooling, db.session,name='模型控制', menu_icon_type='fa', menu_icon_value='fa-houzz'))
+admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-bug'))
 
 # define a context processor for merging flask-admin's template context into the
 # flask-security views.
@@ -211,62 +212,9 @@ def security_context_processor():
         get_url=url_for
     )
 
-def build_sample_db():
-    """
-    Populate a small db with some example entries.
-    """
 
-    import string
-    import random
-
-    db.drop_all()
-    db.create_all()
-
-    with app.app_context():
-        user_role = Role(name='user')
-        super_user_role = Role(name='superuser')
-        db.session.add(user_role)
-        db.session.add(super_user_role)
-        db.session.commit()
-
-        test_user = user_datastore.create_user(
-            first_name='Admin',
-            email='admin',
-            password=encrypt_password('admin'),
-            roles=[user_role, super_user_role]
-        )
-
-        first_names = [
-            'Harry', 'Amelia', 'Oliver', 'Jack', 'Isabella', 'Charlie', 'Sophie', 'Mia',
-            'Jacob', 'Thomas', 'Emily', 'Lily', 'Ava', 'Isla', 'Alfie', 'Olivia', 'Jessica',
-            'Riley', 'William', 'James', 'Geoffrey', 'Lisa', 'Benjamin', 'Stacey', 'Lucy'
-        ]
-        last_names = [
-            'Brown', 'Smith', 'Patel', 'Jones', 'Williams', 'Johnson', 'Taylor', 'Thomas',
-            'Roberts', 'Khan', 'Lewis', 'Jackson', 'Clarke', 'James', 'Phillips', 'Wilson',
-            'Ali', 'Mason', 'Mitchell', 'Rose', 'Davis', 'Davies', 'Rodriguez', 'Cox', 'Alexander'
-        ]
-
-        for i in range(len(first_names)):
-            tmp_email = first_names[i].lower() + "." + last_names[i].lower() + "@example.com"
-            tmp_pass = ''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(10))
-            user_datastore.create_user(
-                first_name=first_names[i],
-                last_name=last_names[i],
-                email=tmp_email,
-                password=encrypt_password(tmp_pass),
-                roles=[user_role, ]
-            )
-        db.session.commit()
-    return
 
 if __name__ == '__main__':
 
-    # Build a sample db on the fly, if one does not exist yet.
-    app_dir = os.path.realpath(os.path.dirname(__file__))
-    database_path = os.path.join(app_dir, app.config['DATABASE_FILE'])
-    if not os.path.exists(database_path):
-        build_sample_db()
-
     # Start app
-    app.run(debug=True)
+    app.run(host = '0.0.0.0',port=5568,debug=True)
