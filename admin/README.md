@@ -1,16 +1,16 @@
 # README
 
-# Flask-Admin Dashboard Example
+# Flask-Admin Dashboard
 
-Basic dashboard app with Admin LTE template and Flask Admin, it has:
+基于Flask Admin构建的网站后台管理系统，功能包括：
 
-- User Registration
-- Login as general or admin user
-- Roles management
-- Create form in modal window by default
-- Inline editing enabled by default
-- Skins and layout customization
-- Dashboard, charts, chat and calendar examples
+- 用户注册
+- 以游客，管理员，超级管理的登陆
+- 权限管理
+- 文件上传
+- 数据库管理
+- 界面皮肤自定义
+- 数据图表等
 
 Utilities:
 
@@ -18,9 +18,9 @@ Utilities:
 - Flask-Security
 - Flask-Admin
 - A lot of Charts libraries
-- SQLite
+- Postgres
 
-### How to use
+### 使用手册
 
 - Clone or download the git repository. `sh $ git clone https://github.com/openpipes/pipes.git`
 - Create and activate a virtual environment: `sh $ virtualenv venv $ source venv/bin/activate`
@@ -29,42 +29,45 @@ Utilities:
 - The first execution will create automatically a sample sqlite database.
 - Open your favorite browser and type `localhost:5568/admin` then just log in with the default user or register one.
 
-### Screenshots
+### 日志
 
-![screenshots/index.png](screenshots/index.png)
+2020.02.26 新功能： 
 
-![screenshots/login.png](screenshots/login.png)
+- 首页图表链接数据库，实现实时更新；
+- 增加外部链接跳转功能（如跳转至谷歌）；
+- 可自定义对数据库数据的批量操作功能；
+- 数据库管理界面实现分页，富文本编辑；
 
-![screenshots/register.png](screenshots/register.png)
+### 界面截图
 
-![screenshots/home.png](screenshots/home.png)
+![README/index_view.jpg](README/index_view.jpg)
 
-![screenshots/user.png](screenshots/user.png)
+![README/info_management.jpg](README/info_management.jpg)
 
-![screenshots/edit.png](screenshots/edit.png)
+![README/register.png](README/register.png)
 
-![screenshots/create.png](screenshots/create.png)
+![README/toggle_page.jpg](README/toggle_page.jpg)
 
-![screenshots/skins.png](screenshots/skins.png)
+![README/upload_file.jpg](README/upload_file.jpg)
 
-## To do list
+## 功能
+
+首页
 
 - 统计数据
     - 访问数量
-    - 用户数量
     - 文件数量
-- 交互图表
+- 交互图表 *To do
     - 政策发布的时间分布
     - 政策发布的类型分布
     - 交互的中国地图
-- 留言区
+- 留言区*To do （未建立数据库）
     - 用户给后台留言
-- 模型工坊
-    - toggle-tab （未做两个标签页之间的交互）
-        - 模拟器
-        - 变量列表
-        - 模型列表
-        - 运行日志
+- 模型工坊*To do
+    - 模拟器
+    - 变量列表
+    - 模型列表
+    - 运行日志
     - 变量列表
         - 复选变量
         - 批量提交变量至模拟器
@@ -82,9 +85,7 @@ Utilities:
     - 通知栏
         - 显示系统通知
         - 显示模型运行状态的通知
-    - 知识图谱
-        - 嵌入neo4j的视图
-        - 保存图谱的图片
-        - 下载图谱中导出的数据(根据权限)
-    - 数据采集(管理员) （正在做爬虫，上手之后做嵌入）
-        - 嵌入crawlab的视图
+- 知识图谱*To do
+    - 嵌入neo4j的视图
+    - 保存图谱的图片
+    - 下载图谱中导出的数据(根据权限)
