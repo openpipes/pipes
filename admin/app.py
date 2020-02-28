@@ -187,24 +187,27 @@ class PoolingView1(ModelView):
     column_default_sort = ('is_checked', False)# 优先显示is_Checked为true的数据
 
 class PoolingView2(ModelView):
- 
-    can_export = False
-    can_create = False
-    column_editable_list = ['hash_code','title','unit','publish_time', 'provinces','cities','url','score','resume','keywords','is_checked','content']
-#     column_searchable_list = column_editable_list
-#     column_filters = column_editable_list
-    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords']
-    column_details_exclude_list = column_exclude_list    
+    def is_accessible(self):
+        if not current_user.is_active or not current_user.is_authenticated:
+            return False
+
+        if current_user.has_role('supermanager') or current_user.has_role('manager'):
+            return True
+
+        return False
+    
+    column_editable_list = ['hash_code','title','unit','publish_time', 'provinces','cities',
+                            'url','score','resume','keywords','is_checked','content','doc_type'] 
+    column_exclude_list = ['hash_code','resume','url','provinces','cities','url','keywords','content']
     column_labels = {'hash_code':'哈希值','title':'标题','unit':'发布单位','publish_time':'发布时间','doc_type':'分类',
                      'provinces':'省份','cities':'城市','url':'链接','score':'分数','resume':'概要',
                      'keywords':'关键词','is_checked':'是否检查','content':'文章主体'}
-#     form_overrides = {
-#     'content': CKTextAreaField
-#     }
+
     form_overrides = dict(content = CKEditorField)
+    page_size = 10
     create_template = 'ck_create.html'
     edit_template = 'ck_edit.html'  # 指定编辑记录的模板
-    page_size = 10
+    column_type_formatters=dict()#is_checked 默认值 False
     column_default_sort = ('is_checked', True)# 优先显示is_Checked为true的数据
 
     def is_accessible(self):
@@ -252,10 +255,11 @@ class ArticleView(ModelView):
         return False
     
 class CrawlerView(BaseView):
+#     @expose('http:// 182.92.81.20:1995')
     @expose('/')
     def index(self):
         return self.render('admin/custom_index.html')
-
+#     pass
 class KGraphView(BaseView):
     @expose('/')
     def index(self):
@@ -305,8 +309,9 @@ admin.add_view(PoolingView2(pooling, db.session, menu_icon_type='fa', menu_icon_
                             ,endpoint = "double_check"))
 admin.add_view(ArticleView(articlemetadata, db.session,name='已有文稿', menu_icon_type='fa', menu_icon_value='fa-file'))
 admin.add_view(KGraphView(menu_icon_type='fa', menu_icon_value='fa-houzz',name = "知识图谱"))
-admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-bug'))
-admin.add_link(AuthenticatedMenuLink(name = "google", url="http://www.google.com",category = "外部链接"))
+admin.add_view(CrawlerView(name="数据采集", menu_icon_type='fa', menu_icon_value='fa-bug',endpoint = '/craw'))
+admin.add_link(AuthenticatedMenuLink(name = "google", url="http://www.google.com",category = "爬虫跳转"))
+admin.add_link(AuthenticatedMenuLink(name = "爬虫", url ="182.92.81.20:8080",category = "爬虫跳转"))
 
 # define a context processor for merging flask-admin's template context into the
 # flask-security views.
